@@ -12,6 +12,7 @@ import Loading from './components/Loading';
 class App extends React.Component {
   state = {
     loginName: '',
+    searchValue: '',
   };
 
   handleInputChange = ({ target: { name, value } }) => {
@@ -30,7 +31,15 @@ class App extends React.Component {
         <Route exact path="/album/:id" render={ (props) => <Album { ...props } /> } />
         <Route exact path="/favorites" component={ Favorites } />
         <Route exact path="/profile" component={ Profile } />
-        <Route exact path="/search" component={ Search } />
+        <Route
+          exact
+          path="/search"
+          render={ (props) => (<Search
+            { ...props }
+            handleInputChange={ this.handleInputChange }
+            { ...this.state }
+          />) }
+        />
         <Route
           exact
           path="/"
