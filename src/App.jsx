@@ -8,6 +8,7 @@ import { Profile } from './components/Profile';
 import { ProfileEdit } from './components/ProfileEdit';
 import { NotFound } from './components/NotFound';
 import Loading from './components/Loading';
+// import searchAlbumsAPI from './services/searchAlbumsAPI';
 
 class App extends React.Component {
   state = {

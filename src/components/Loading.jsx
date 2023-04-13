@@ -12,5 +12,3 @@ export class Loading extends Component {
 
 Loading.propTypes = {
 };
-
-export default Loading;
