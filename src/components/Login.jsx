@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { createUser } from '../services/userAPI';
 
 export class Login extends Component {
   render() {
     const { loginName, handleInputChange, history } = this.props;
     const minNameLegnth = 3;
+
     return (
       <div data-testid="page-login">
         <h1>Login</h1>
@@ -21,6 +23,11 @@ export class Login extends Component {
             disabled={ loginName.length < minNameLegnth }
             data-testid="login-submit-button"
             onClick={ () => {
+              const time = 300;
+              createUser({ name: loginName });
+              setTimeout(() => {
+                history.push('/search');
+              }, time);
               history.push('/loading');
             } }
           >

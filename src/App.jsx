@@ -24,7 +24,7 @@ class App extends React.Component {
         <Route
           exact
           path="/loading"
-          render={ (props) => <Loading { ...props } { ...this.state } /> }
+          component={ Loading }
         />
         <Route exact path="/profile/edit" component={ ProfileEdit } />
         <Route exact path="/album/:id" render={ (props) => <Album { ...props } /> } />
