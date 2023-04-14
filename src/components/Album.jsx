@@ -18,6 +18,7 @@ export class Album extends Component {
   fetchMusics = async () => {
     const { match: { params: { id } } } = this.props;
     const musicList = await getMusics(id);
+    console.log(musicList);
     this.setState({ musicList, loading: false });
   };
 
@@ -36,7 +37,12 @@ export class Album extends Component {
                     <p data-testid="album-name">{music.collectionName}</p>
                   </div>
                 )
-                : <MusicCard key={ music.trackId } { ...music } />
+                : (
+                  <MusicCard
+                    key={ music.trackId }
+                    { ...music }
+                    loadingUpdate={ this.loadingUpdate }
+                  />)
             ))}
           </div>)}
       </div>

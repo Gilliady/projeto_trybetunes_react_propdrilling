@@ -10,7 +10,7 @@ export class MusicCard extends Component {
   };
 
   handleCheckBoxChange = async ({ target: { checked } }) => {
-    this.setState({ loading: true, checked });
+    this.setState({ checked, loading: true });
     if (checked) {
       await addSong({ ...this.props });
     } else await removeSong({ ...this.props });
@@ -21,22 +21,22 @@ export class MusicCard extends Component {
     const { trackName, artworkUrl100, previewUrl, trackId } = this.props;
     const { loading, checked } = this.state;
     return (
-      <div>
-        <p>{trackName}</p>
-        <img src={ artworkUrl100 } alt={ trackName } />
-        <audio
-          data-testid="audio-component"
-          src={ previewUrl }
-          controls
-        >
-          <track kind="captions" />
-          O seu navegador não suporta o elemento
-          <code>audio</code>
-          .
-        </audio>
-        {loading
-          ? <Loading />
-          : (
+      loading
+        ? <Loading />
+        : (
+          <div>
+            <p>{trackName}</p>
+            <img src={ artworkUrl100 } alt={ trackName } />
+            <audio
+              data-testid="audio-component"
+              src={ previewUrl }
+              controls
+            >
+              <track kind="captions" />
+              O seu navegador não suporta o elemento
+              <code>audio</code>
+              .
+            </audio>
             <label
               data-testid={ `checkbox-music-${trackId}` }
               htmlFor={ `favorite${trackId}` }
@@ -48,11 +48,9 @@ export class MusicCard extends Component {
                 checked={ checked }
                 onChange={ this.handleCheckBoxChange }
               />
-
             </label>
-          )}
-      </div>
-    );
+          </div>
+        ));
   }
 }
 
