@@ -47,6 +47,7 @@ export class MusicCard extends Component {
 
 MusicCard.propTypes = {
   artworkUrl100: PropTypes.string.isRequired,
+  checked: PropTypes.bool.isRequired,
   loadingUpdate: PropTypes.func.isRequired,
   previewUrl: PropTypes.string.isRequired,
   trackId: PropTypes.number.isRequired,
