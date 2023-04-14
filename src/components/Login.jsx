@@ -22,13 +22,10 @@ export class Login extends Component {
             type="button"
             disabled={ loginName.length < minNameLegnth }
             data-testid="login-submit-button"
-            onClick={ () => {
-              const time = 300;
-              createUser({ name: loginName });
-              setTimeout(() => {
-                history.push('/search');
-              }, time);
+            onClick={ async () => {
               history.push('/loading');
+              await createUser({ name: loginName });
+              history.push('/search');
             } }
           >
             Entrar

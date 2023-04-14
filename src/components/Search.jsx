@@ -57,11 +57,8 @@ export class Search extends Component {
             Pesquisar
           </button>
         </form>
-
         { loading && <Loading /> }
         { (!loading && search) && albumContent}
-        {/* ? <Loading />
-          : albumContent} */}
       </div>
     );
   }
