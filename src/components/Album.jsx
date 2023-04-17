@@ -18,12 +18,8 @@ export class Album extends Component {
     this.fetchFavorites();
   }
 
-  componentDidUpdate() {
-  }
-
   loadingUpdate = (value) => {
     this.setState({ loading: value });
-    this.fetchFavorites();
   };
 
   fetchFavorites = async () => {
@@ -35,7 +31,7 @@ export class Album extends Component {
   fetchMusics = async () => {
     const { match: { params: { id } } } = this.props;
     const musicList = await getMusics(id);
-    this.setState({ musicList, loading: false });
+    this.setState({ musicList });
   };
 
   render() {
@@ -55,12 +51,13 @@ export class Album extends Component {
                 )
                 : (
                   <MusicCard
-                    checked={
-                      favoriteSongs.some(({ trackId }) => trackId === music.trackId)
-                    }
                     key={ music.trackId }
                     { ...music }
                     loadingUpdate={ this.loadingUpdate }
+                    fetchFavorites={ this.fetchFavorites }
+                    checked={
+                      favoriteSongs.some(({ trackId }) => trackId === music.trackId)
+                    }
                   />)
             ))}
           </div>)}

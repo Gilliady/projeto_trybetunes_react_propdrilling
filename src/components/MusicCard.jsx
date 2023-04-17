@@ -4,12 +4,14 @@ import { addSong, removeSong } from '../services/favoriteSongsAPI';
 
 export class MusicCard extends Component {
   handleCheckBoxChange = async ({ target: { checked } }) => {
-    const { loadingUpdate } = this.props;
+    const { loadingUpdate, fetchFavorites } = this.props;
     loadingUpdate(true);
     if (checked) {
       await addSong({ ...this.props });
-    } else await removeSong({ ...this.props });
-    loadingUpdate(false);
+    } else {
+      await removeSong({ ...this.props });
+    }
+    fetchFavorites();
   };
 
   render() {
@@ -52,4 +54,5 @@ MusicCard.propTypes = {
   previewUrl: PropTypes.string.isRequired,
   trackId: PropTypes.number.isRequired,
   trackName: PropTypes.string.isRequired,
+  fetchFavorites: PropTypes.func.isRequired,
 };
