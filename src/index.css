@@ -17,3 +17,14 @@ code {
   display: flex;
   justify-content: center;
 }
+
+.main-section {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.alternatives-container {
+  margin-left: 220px;
+  width: 100%;
+}

@@ -4,6 +4,7 @@ import { Header } from './Header';
 import { Loading } from './Loading';
 import { AlbumCard } from './AlbumCard';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
+import '../style/search.css';
 
 export class Search extends Component {
   state = {
@@ -37,29 +38,38 @@ export class Search extends Component {
         </>
       ) : search && <p>Nenhum Álbum foi encontrado</p>);
     return (
-      <div data-testid="page-search">
+      <section className="main-section">
         <Header />
-        <form>
-          <input
-            name="searchValue"
-            type="text"
-            value={ searchValue }
-            onChange={ handleInputChange }
-            data-testid="search-artist-input"
-            placeholder="Nome do Artista"
-          />
-          <button
-            type="button"
-            data-testid="search-artist-button"
-            disabled={ searchValue.length < 2 }
-            onClick={ this.searchAlbum }
-          >
-            Pesquisar
-          </button>
-        </form>
-        { loading && <Loading /> }
-        { (!loading && search) && albumContent}
-      </div>
+        <div data-testid="page-search" className="alternatives-container form-search">
+          <form className="">
+            <input
+              className="form-input"
+              name="searchValue"
+              type="text"
+              value={ searchValue }
+              onChange={ handleInputChange }
+              data-testid="search-artist-input"
+              placeholder="Nome do Artista"
+            />
+            <button
+              className="btn btn-light"
+              type="button"
+              data-testid="search-artist-button"
+              disabled={ searchValue.length < 2 }
+              onClick={ this.searchAlbum }
+            >
+              Pesquisar
+            </button>
+          </form>
+          { loading && <Loading /> }
+          { (!loading && search) && (
+            <div
+              className=""
+            >
+              {albumContent}
+            </div>)}
+        </div>
+      </section>
     );
   }
 }

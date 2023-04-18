@@ -27,19 +27,25 @@ export class Favorites extends Component {
   render() {
     const { state: { favoriteSongs, loading } } = this;
     return (
-      <div data-testid="page-favorites">
-        <Header />
-        {loading
-          ? <Loading />
-          : favoriteSongs.map((song) => (
-            <MusicCard
-              key={ song.trackId }
-              loadingUpdate={ this.loadingUpdate }
-              fetchFavorites={ this.fetchFavorites }
-              { ...song }
-              checked={ favoriteSongs.some((music) => music.trackId === song.trackId) }
-            />))}
-      </div>
+      <section className="main-section">
+        <div data-testid="page-favorites">
+          <Header />
+          <div className="alternatives-container">
+            {loading
+              ? <Loading />
+              : favoriteSongs.map((song) => (
+                <MusicCard
+                  key={ song.trackId }
+                  loadingUpdate={ this.loadingUpdate }
+                  fetchFavorites={ this.fetchFavorites }
+                  { ...song }
+                  checked={
+                    favoriteSongs.some((music) => music.trackId === song.trackId)
+                  }
+                />))}
+          </div>
+        </div>
+      </section>
     );
   }
 }

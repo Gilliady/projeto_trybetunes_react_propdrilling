@@ -22,18 +22,20 @@ export class Profile extends Component {
   render() {
     const { state: { loading, user } } = this;
     return (
-      <div data-testid="page-profile">
-        <Header />
-        {loading ? <Loading /> : (
-          <div>
-            <img data-testid="profile-image" src={ user.image } alt={ user.name } />
-            <h3>{ user.name }</h3>
-            <p>{ user.email }</p>
-            <p>{ user.description }</p>
-            <Link to="/profile/edit">Editar perfil</Link>
-          </div>
-        )}
-      </div>
+      <section className="main-content">
+        <div data-testid="page-profile">
+          <Header />
+          {loading ? <Loading /> : (
+            <div className="alternatives-container">
+              <img data-testid="profile-image" src={ user.image } alt={ user.name } />
+              <h3>{ user.name }</h3>
+              <p>{ user.email }</p>
+              <p>{ user.description }</p>
+              <Link to="/profile/edit">Editar perfil</Link>
+            </div>
+          )}
+        </div>
+      </section>
     );
   }
 }

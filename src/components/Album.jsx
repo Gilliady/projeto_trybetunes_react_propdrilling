@@ -36,32 +36,34 @@ export class Album extends Component {
 
   render() {
     const { state: { loading, musicList, favoriteSongs } } = this;
+    const [collectionInfo, ...musics] = musicList;
     return (
-      <div data-testid="page-album">
-        <Header />
-        {loading ? <Loading /> : (
-          <div className="music-list">
-            {musicList.map((music, index) => (
-              index === 0
-                ? (
-                  <div key={ index }>
-                    <h3 data-testid="artist-name">{music.artistName}</h3>
-                    <p data-testid="album-name">{music.collectionName}</p>
-                  </div>
-                )
-                : (
-                  <MusicCard
-                    key={ music.trackId }
-                    { ...music }
-                    loadingUpdate={ this.loadingUpdate }
-                    fetchFavorites={ this.fetchFavorites }
-                    checked={
-                      favoriteSongs.some(({ trackId }) => trackId === music.trackId)
-                    }
-                  />)
+      <section className="main-section">
+        <div data-testid="page-album">
+          <Header />
+          <div className="alternatives-container">
+            {loading ? <Loading />
+              : (
+                <div>
+                  <h3 data-testid="artist-name">{collectionInfo.artistName}</h3>
+                  <p data-testid="album-name">{collectionInfo.collectionName}</p>
+                </div>)}
+
+            {!loading && musics.map((music) => (
+              <div key={ music.trackId }>
+                <MusicCard
+                  { ...music }
+                  loadingUpdate={ this.loadingUpdate }
+                  fetchFavorites={ this.fetchFavorites }
+                  checked={
+                    favoriteSongs.some(({ trackId }) => trackId === music.trackId)
+                  }
+                />
+              </div>
             ))}
-          </div>)}
-      </div>
+          </div>
+        </div>
+      </section>
     );
   }
 }

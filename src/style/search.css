@@ -1,0 +1,16 @@
+.form-search {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+form {
+  background-image: url('../images/BG AZUL.png');
+  background-origin: padding-box;
+  background-position: top;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  padding: 100px;
+  width: 100%;
+}

@@ -10,6 +10,7 @@ export class AlbumCard extends Component {
         data-testid={ `link-to-album-${album
           .collectionId}` }
         to={ `/album/${album.collectionId}` }
+        className="card"
       >
         <div>
           <h3>{album.collectionName}</h3>

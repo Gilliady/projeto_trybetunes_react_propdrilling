@@ -17,12 +17,23 @@ export class Header extends Component {
     const user = await getUser();
     const content = (
       <>
-        <h3 data-testid="header-user-name">{user.name}</h3>
+        <img
+          className="logo-image"
+          src="https://encurtador.com.br/bjAQW"
+          alt="logoTrybeTunes"
+        />
         <nav>
-          <Link data-testid="link-to-search" to="/search">Pesquisar</Link>
-          <Link data-testid="link-to-favorites" to="/favorites">Favoritos</Link>
-          <Link data-testid="link-to-profile" to="/profile">Perfil</Link>
+          <Link data-testid="link-to-search" to="/search">
+            <img src="https://curt.link/6ilM40" alt="pesquisar" />
+          </Link>
+          <Link data-testid="link-to-favorites" to="/favorites">
+            <img src="https://curt.link/v544EQ" alt="Favoritos" />
+          </Link>
+          <Link data-testid="link-to-profile" to="/profile">
+            <img src="https://curt.link/1lphw7" alt="Perfil" />
+          </Link>
         </nav>
+        <h3 data-testid="header-user-name">{user.name}</h3>
       </>);
     this.setState({ content });
   };
@@ -30,7 +41,8 @@ export class Header extends Component {
   render() {
     const { content } = this.state;
     return (
-      <header className="header" data-testid="header-component">{ content }</header>
+
+      <header className="col" data-testid="header-component">{ content }</header>
     );
   }
 }

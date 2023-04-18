@@ -7,9 +7,9 @@ export class MusicCard extends Component {
     const { loadingUpdate, fetchFavorites } = this.props;
     loadingUpdate(true);
     if (checked) {
-      await addSong({ ...this.props });
+      await addSong(this.props);
     } else {
-      await removeSong({ ...this.props });
+      await removeSong(this.props);
     }
     fetchFavorites();
   };

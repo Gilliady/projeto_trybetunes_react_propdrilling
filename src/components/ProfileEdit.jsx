@@ -45,12 +45,7 @@ export class ProfileEdit extends Component {
       description,
     },
     } = this;
-    await updateUser({
-      name,
-      image,
-      email,
-      description,
-    });
+    await updateUser({ name, image, email, description });
     this.setState({ loading: false });
   };
 
@@ -80,77 +75,81 @@ export class ProfileEdit extends Component {
     },
     } = this;
     return (
-      <div
-        data-testid="page-profile-edit"
-      >
-        <Header />
-        {
-          loading
-            ? <Loading />
-            : (
-              <form>
-                <label htmlFor="image">
-                  Insira uma url para a a nova imagem
-                  {' '}
-                  <input
-                    data-testid="edit-input-image"
-                    id="image"
-                    type="text"
-                    value={ image }
-                    placeholder={ user.image }
-                    onChange={ this.handleInputChange }
-                    name="image"
-                  />
-                </label>
-                <label htmlFor="name">
-                  Nome:
-                  {' '}
-                  <input
-                    data-testid="edit-input-name"
-                    id="name"
-                    type="text"
-                    name="name"
-                    value={ name }
-                    placeholder={ user.name }
-                    onChange={ this.handleInputChange }
-                  />
-                </label>
-                <label htmlFor="email">
-                  Email:
-                  {' '}
-                  <input
-                    data-testid="edit-input-email"
-                    id="email"
-                    type="text"
-                    name="email"
-                    value={ email }
-                    placeholder={ user.email }
-                    onChange={ this.handleInputChange }
-                  />
-                </label>
-                <label htmlFor="description">
-                  Descrição:
-                  {' '}
-                  <textarea
-                    data-testid="edit-input-description"
-                    id="description"
-                    name="description"
-                    value={ description }
-                    placeholder={ user.description }
-                    onChange={ this.handleInputChange }
-                  />
-                </label>
-                <button
-                  data-testid="edit-button-save"
-                  onClick={ this.saveProfile }
-                  disabled={ disabledButton }
-                >
-                  Salvar
-                </button>
-              </form>
-            )
-        }
-      </div>
+      <section className="main-section">
+        <div
+          data-testid="page-profile-edit"
+        >
+          <Header />
+          {
+            loading
+              ? <Loading />
+              : (
+                <div className="alternatives-container">
+                  <form>
+                    <label htmlFor="image">
+                      Insira uma url para a a nova imagem
+                      {' '}
+                      <input
+                        data-testid="edit-input-image"
+                        id="image"
+                        type="text"
+                        value={ image }
+                        placeholder={ user.image }
+                        onChange={ this.handleInputChange }
+                        name="image"
+                      />
+                    </label>
+                    <label htmlFor="name">
+                      Nome:
+                      {' '}
+                      <input
+                        data-testid="edit-input-name"
+                        id="name"
+                        type="text"
+                        name="name"
+                        value={ name }
+                        placeholder={ user.name }
+                        onChange={ this.handleInputChange }
+                      />
+                    </label>
+                    <label htmlFor="email">
+                      Email:
+                      {' '}
+                      <input
+                        data-testid="edit-input-email"
+                        id="email"
+                        type="text"
+                        name="email"
+                        value={ email }
+                        placeholder={ user.email }
+                        onChange={ this.handleInputChange }
+                      />
+                    </label>
+                    <label htmlFor="description">
+                      Descrição:
+                      {' '}
+                      <textarea
+                        data-testid="edit-input-description"
+                        id="description"
+                        name="description"
+                        value={ description }
+                        placeholder={ user.description }
+                        onChange={ this.handleInputChange }
+                      />
+                    </label>
+                    <button
+                      data-testid="edit-button-save"
+                      onClick={ this.saveProfile }
+                      disabled={ disabledButton }
+                    >
+                      Salvar
+                    </button>
+                  </form>
+                </div>
+              )
+          }
+        </div>
+      </section>
     );
   }
 }
